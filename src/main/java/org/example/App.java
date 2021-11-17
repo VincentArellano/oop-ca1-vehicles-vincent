@@ -35,7 +35,7 @@ public class App
         String reg = "172LH234106";
         Vehicle v = vehicleManager.findVehicleByRegNum(reg);
         if(v!=null){
-            System.out.println(v.toString());
+            System.out.println(v);
         }
         else{
             System.out.println("Vehicle Not Found");
