@@ -1,6 +1,6 @@
 package org.example;
 
-/** Vincent Arellano SD2a xxx
+/** Vincent Arellano SD2a
  * This Vehicle Bookings Management Systems manages the booking of Vehicles
  * by Passengers.
  *
@@ -31,6 +31,15 @@ public class App
         VehicleManager vehicleManager = new VehicleManager("vehicles.txt");
         System.out.println("List of all Vehicles:");
         vehicleManager.displayAllVehicles();
+
+        String reg = "172LH234106";
+        Vehicle v = vehicleManager.findVehicleByRegNum(reg);
+        if(v!=null){
+            System.out.println(v.toString());
+        }
+        else{
+            System.out.println("Vehicle Not Found");
+        }
 
         System.out.println("Program exiting... Goodbye");
     }

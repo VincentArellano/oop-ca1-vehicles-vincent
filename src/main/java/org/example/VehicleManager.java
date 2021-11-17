@@ -60,4 +60,12 @@ public class VehicleManager {
 
     //TODO add more functionality as per spec.
 
+    public Vehicle findVehicleByRegNum(String registration){
+        for(Vehicle v :vehicleList){
+            if(v.getRegistration().equalsIgnoreCase(registration)){
+                return v;
+            }
+        }
+        return null;
+    }
 }
