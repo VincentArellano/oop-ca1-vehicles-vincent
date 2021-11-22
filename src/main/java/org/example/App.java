@@ -29,9 +29,10 @@ public class App
         passengerStore.displayAllPassengers();
 
         VehicleManager vehicleManager = new VehicleManager("vehicles.txt");
-        System.out.println("List of all Vehicles:");
+        System.out.println("\nList of all Vehicles:");
         vehicleManager.displayAllVehicles();
 
+        System.out.println("\nFind Vehicle By Registration Number");
         String reg = "172LH234106";
         Vehicle v = vehicleManager.findVehicleByRegNum(reg);
         if(v!=null){
@@ -40,6 +41,16 @@ public class App
         else{
             System.out.println("Vehicle Not Found");
         }
+
+        passengerStore.addPassenger("Philip Nolan","pnolan@dcu.ie","01-5654327",53.6666,-6.876756);
+
+        passengerStore.addPassenger("Philip Nolan","philip1223456@mit.ie","01-5654327",53.6666,-6.876756);
+
+
+
+        System.out.println("\nList of all passengers:");
+
+        passengerStore.displayAllPassengers();
 
         System.out.println("Program exiting... Goodbye");
     }

@@ -13,6 +13,78 @@ class Booking
 
     private double cost;  //Calculated at booking time
 
+
+
     //TODO - see specification
 
+    public Booking(int bookingId, int passengerId, int vehicleId, LocalDateTime bookingDateTime, double startLatitude, double startLongitude, double endLatitude, double endLongitude, double cost) {
+        this.bookingId = bookingId;
+        this.passengerId = passengerId;
+        this.vehicleId = vehicleId;
+        this.bookingDateTime = bookingDateTime;
+        this.startLocation = new LocationGPS(startLatitude, startLongitude);
+        this.endLocation = new LocationGPS(endLatitude, endLongitude);;
+        this.cost = cost;
+    }
+
+    public int getPassengerId() {
+        return passengerId;
+    }
+
+    public void setPassengerId(int passengerId) {
+        this.passengerId = passengerId;
+    }
+
+    public int getVehicleId() {
+        return vehicleId;
+    }
+
+    public void setVehicleId(int vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+
+    public LocalDateTime getBookingDateTime() {
+        return bookingDateTime;
+    }
+
+    public void setBookingDateTime(LocalDateTime bookingDateTime) {
+        this.bookingDateTime = bookingDateTime;
+    }
+
+    public LocationGPS getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(LocationGPS startLocation) {
+        this.startLocation = startLocation;
+    }
+
+    public LocationGPS getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(LocationGPS endLocation) {
+        this.endLocation = endLocation;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "bookingId=" + bookingId +
+                ", passengerId=" + passengerId +
+                ", vehicleId=" + vehicleId +
+                ", bookingDateTime=" + bookingDateTime +
+                ", startLocation=" + startLocation +
+                ", endLocation=" + endLocation +
+                ", cost=" + cost +
+                '}';
+    }
 }
