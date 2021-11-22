@@ -41,6 +41,16 @@ public class App
             System.out.println("Vehicle Not Found");
         }
 
+        passengerStore.addPassenger("Philip Nolan","pnolan@dcu.ie","01-5654327",53.6666,-6.876756);
+
+        passengerStore.addPassenger("Philip Nolan","philip1223456@mit.ie","01-5654327",53.6666,-6.876756);
+
+
+
+        System.out.println("\nList of all passengers:");
+
+        passengerStore.displayAllPassengers();
+
         System.out.println("Program exiting... Goodbye");
     }
 }
