@@ -56,13 +56,11 @@ public class PassengerStore {
     }
 
     // TODO - see functional spec for details of code to add
-    public void addPassenger(String name, String email, String phone, double latitude, double longitude)
-
-    {
+    public void addPassenger(String name, String email, String phone, double latitude, double longitude) {
 
         // construct a new passenger object
 
-        Passenger passenger = new Passenger(name,email,phone,latitude,longitude);
+        Passenger passenger = new Passenger(name, email, phone, latitude, longitude);
 
         // test to see if Passenger already exists ????
 
@@ -70,7 +68,7 @@ public class PassengerStore {
 
         boolean found = false;
 
-        for(Passenger p : passengerList) {
+        for (Passenger p : passengerList) {
 
             if (p.equals(passenger)) {
 
@@ -84,24 +82,15 @@ public class PassengerStore {
 
         // add the new passenger to the passenger list (if not already there)
 
-        if( found == false) {
+        if (found == false) {
 
             passengerList.add(passenger);
 
-        }
-
-        else{
+        } else {
 
             System.out.println("*** addPassenger() - passenger already exists - no duplicates allowed");
 
         }
-
-
-
-
-
-
-
         // better approach - contains will call equals() to compare passengers
 
         //if(! passengerList.contains(passenger))
@@ -109,6 +98,5 @@ public class PassengerStore {
         //    passengerList.add(passenger);
 
 
-
     }
-} // end class
+}
