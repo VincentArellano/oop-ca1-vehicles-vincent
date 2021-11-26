@@ -74,4 +74,14 @@ public class VehicleManager {
         }
         return null;
     }
+
+    public ArrayList<Vehicle> findVehicleByType(String type){
+        ArrayList<Vehicle> newVehicleList = new ArrayList<>();
+        for(Vehicle v :vehicleList){
+            if(v.getType().equalsIgnoreCase(type)){
+                newVehicleList.add(v);
+            }
+        }
+        return newVehicleList;
+    }
 }

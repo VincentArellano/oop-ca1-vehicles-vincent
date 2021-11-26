@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class MenuTemp {
                 + "2. Vehicles\n"
                 + "3. Bookings\n"
                 + "4. Exit\n"
-                + "Enter Option [1,4]";
+                + "Enter Option [1,2,4]";
 
         final int PASSENGERS = 1;
         final int VEHICLES = 2;
@@ -75,6 +76,7 @@ public class MenuTemp {
                         break;
                     case VEHICLES:
                         System.out.println("Vehicles option chosen");
+                        displayVehicleMenu();
                         break;
                     case BOOKINGS:
                         System.out.println("Bookings option chosen");
@@ -131,7 +133,7 @@ public class MenuTemp {
                         if (p == null)
                             System.out.println("No passenger matching the name \"" + name + "\"");
                         else
-                            System.out.println("Found passenger: \n" + p.toString());
+                            System.out.println("Found passenger: \n" + p);
                         break;
                     case ADD_PASSENGER:
                         System.out.println("Add Passengers");
@@ -145,7 +147,8 @@ public class MenuTemp {
                         double addLatitude = keyboard.nextDouble();
                         System.out.println("Longitude");
                         double addLongitude = keyboard.nextDouble();
-                        passengerStore.addPassenger(addName,addEmail,addPhone,addLatitude,addLongitude);
+                        keyboard.nextLine();
+                        passengerStore.addPassenger(addName, addEmail, addPhone, addLatitude, addLongitude);
                         System.out.println("Passenger added");
                         System.out.println(passengerStore.findPassengerByName(addName));
                         break;
@@ -164,51 +167,66 @@ public class MenuTemp {
 
     }
 
-//    private void displayVehicleMenu() {
-//        final String MENU_ITEMS = "\n*** Vehicle MENU ***\n"
-//                + "1. Show all Passengers\n"
-//                + "2. Find Passenger by Name\n"
-//                + "3. Exit\n"
-//                + "Enter Option [1,2,3]";
-//
-//        final int SHOW_ALL = 1;
-//        final int FIND_BY_NAME = 2;
-//        final int EXIT = 3;
-//
-//        Scanner keyboard = new Scanner(System.in);
-//        int option = 0;
-//        do {
-//            System.out.println("\n" + MENU_ITEMS);
-//            try {
-//                String usersInput = keyboard.nextLine();
-//                option = Integer.parseInt(usersInput);
-//                switch (option) {
-//                    case SHOW_ALL:
-//                        System.out.println("Display ALL Passengers");
-//                        passengerStore.displayAllPassengers();
-//                        break;
-//                    case FIND_BY_NAME:
-//                        System.out.println("Find Passenger by Name");
-//                        System.out.println("Enter passenger name: ");
-//                        String name = keyboard.nextLine();
-//                        Passenger p = passengerStore.findPassengerByName(name);
-//                        if (p == null)
-//                            System.out.println("No passenger matching the name \"" + name + "\"");
-//                        else
-//                            System.out.println("Found passenger: \n" + p.toString());
-//                        break;
-//                    case EXIT:
-//                        System.out.println("Exit Menu option chosen");
-//                        break;
-//                    default:
-//                        System.out.print("Invalid option - please enter number in range");
-//                        break;
-//                }
-//
-//            } catch (InputMismatchException | NumberFormatException e) {
-//                System.out.print("Invalid option - please enter number in range");
-//            }
-//        } while (option != EXIT);
-//    }
+    private void displayVehicleMenu() {
+        final String MENU_ITEMS = "\n*** Vehicle MENU ***\n"
+                + "1. Show all Vehicles\n"
+                + "2. Find Vehicle by Registration\n"
+                + "3. Find Vehicle by Type\n"
+                + "4. Exit\n"
+                + "Enter Option [1,2,3,4]";
+
+        final int SHOW_ALL = 1;
+        final int FIND_BY_REG = 2;
+        final int FIND_BY_TYPE = 3;
+        final int EXIT = 4;
+
+        Scanner keyboard = new Scanner(System.in);
+        int option = 0;
+        do {
+            System.out.println("\n" + MENU_ITEMS);
+            try {
+                String usersInput = keyboard.nextLine();
+                option = Integer.parseInt(usersInput);
+                switch (option) {
+                    case SHOW_ALL:
+                        System.out.println("Display ALL Vehicles");
+                        vehicleManager.displayAllVehicles();
+                        break;
+                    case FIND_BY_REG:
+                        System.out.println("Find Vehicle by Registration");
+                        System.out.println("Enter vehicle registration: ");
+                        String registration = keyboard.nextLine();
+                        Vehicle v = vehicleManager.findVehicleByRegNum(registration);
+                        if (v == null)
+                            System.out.println("No vehicle matching the name \"" + registration + "\"");
+                        else
+                            System.out.println("Found passenger: \n" + v);
+                        break;
+                    case FIND_BY_TYPE:
+                        System.out.println("Find Vehicle by Type");
+                        System.out.println("Enter vehicle type: ");
+                        String type = keyboard.nextLine();
+                        vehicleManager.findVehicleByType(type);
+                        if (vehicleManager.findVehicleByType(type) == null)
+                            System.out.println("No vehicles matching the type \"" + type + "\"");
+                        else
+                            System.out.println("Found vehicles:");
+                        for(Vehicle v1 : vehicleManager.findVehicleByType(type)) {
+                            System.out.println(v1);
+                        }
+                        break;
+                    case EXIT:
+                        System.out.println("Exit Menu option chosen");
+                        break;
+                    default:
+                        System.out.print("Invalid option - please enter number in range");
+                        break;
+                }
+
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.print("Invalid option - please enter number in range");
+            }
+        } while (option != EXIT);
+    }
 }
 
