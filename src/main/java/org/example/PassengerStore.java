@@ -99,4 +99,13 @@ public class PassengerStore {
 
 
     }
+
+    public Passenger findPassengerByName(String name){
+        for(Passenger p :passengerList){
+            if(p.getName().equalsIgnoreCase(name)){
+                return p;
+            }
+        }
+        return null;
+    }
 }

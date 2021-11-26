@@ -15,8 +15,6 @@ public class BookingManager {
         this.bookingList = new ArrayList<>();
     }
 
-    //TODO implement functionality as per specification
-
     public void displayAllBooking() {
         for (Booking b : this.bookingList) {
             System.out.println(b.toString());
