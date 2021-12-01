@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookingManager {
@@ -12,8 +13,13 @@ public class BookingManager {
     private VehicleManager vehicleManager;
 
     // Constructor
-    public BookingManager() {
+    public BookingManager(String fileName) {
         this.bookingList = new ArrayList<>();
+        loadBookingDataFromFile(fileName);
+    }
+
+    public List<Booking> getAllBookings() {
+        return this.bookingList;
     }
 
     public void displayAllBooking() {
@@ -26,7 +32,7 @@ public class BookingManager {
         LocalDateTime now = LocalDateTime.now();
         for (Booking b : this.bookingList) {
             if(now.isBefore(b.getBookingDateTime()))
-            System.out.println(b);
+            System.out.println(b.toString());
         }
     }
 
