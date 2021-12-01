@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +19,14 @@ public class BookingManager {
     public void displayAllBooking() {
         for (Booking b : this.bookingList) {
             System.out.println(b.toString());
+        }
+    }
+
+    public void displayBookingInFuture() {
+        LocalDateTime now = LocalDateTime.now();
+        for (Booking b : this.bookingList) {
+            if(now.isBefore(b.getBookingDateTime()))
+            System.out.println(b);
         }
     }
 
@@ -77,5 +86,14 @@ public class BookingManager {
             System.out.println("*** addBooking() - booking already exists - no duplicates allowed");
 
         }
+    }
+
+    public Booking findBookingByPassengerId(int passengerId){
+        for(Booking b :bookingList){
+            if(b.getPassengerId() == passengerId){
+                return b;
+            }
+        }
+        return null;
     }
 }

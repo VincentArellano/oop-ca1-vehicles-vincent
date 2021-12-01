@@ -55,7 +55,7 @@ public class MenuTemp {
                 + "2. Vehicles\n"
                 + "3. Bookings\n"
                 + "4. Exit\n"
-                + "Enter Option [1,2,4]";
+                + "Enter Option [1,2,3,4]";
 
         final int PASSENGERS = 1;
         final int VEHICLES = 2;
@@ -80,6 +80,7 @@ public class MenuTemp {
                         break;
                     case BOOKINGS:
                         System.out.println("Bookings option chosen");
+                        displayBookingMenu();
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
@@ -227,6 +228,78 @@ public class MenuTemp {
                 System.out.print("Invalid option - please enter number in range");
             }
         } while (option != EXIT);
+    }
+
+    private void displayBookingMenu() {
+        final String MENU_ITEMS = "\n*** Booking MENU ***\n"
+                + "1. Show all Booking\n"
+                + "2. Show all future Booking\n"
+                + "3. Find Booking by Passenger\n"
+                + "4. Add Booking\n"
+                + "5. Exit\n"
+                + "Enter Option [1,2,3,4,5]";
+
+        final int SHOW_ALL = 1;
+        final int SHOW_FUTURE_BOOKING = 2;
+        final int FIND_BY_PASSENGER = 3;
+        final int ADD_BOOKING = 4;
+        final int EXIT = 5;
+
+        Scanner keyboard = new Scanner(System.in);
+        int option = 0;
+        do {
+            System.out.println("\n" + MENU_ITEMS);
+            try {
+                String usersInput = keyboard.nextLine();
+                option = Integer.parseInt(usersInput);
+                switch (option) {
+                    case SHOW_ALL:
+                        System.out.println("Display ALL Booking");
+                        bookingManager.displayAllBooking();
+                        break;
+                    case SHOW_FUTURE_BOOKING:
+                        System.out.println("Display ALL Future Booking");
+                        bookingManager.displayBookingInFuture();
+                    case FIND_BY_PASSENGER:
+                        System.out.println("Find Passenger by Name");
+                        System.out.println("Enter passenger name: ");
+                        String name = keyboard.nextLine();
+                        Passenger p = passengerStore.findPassengerByName(name);
+                        if (p == null)
+                            System.out.println("No passenger matching the name \"" + name + "\"");
+                        else
+                            System.out.println("Found passenger: \n" + p);
+                        break;
+                    case ADD_BOOKING:
+                        System.out.println("Add Passengers");
+                        System.out.println("Name:");
+                        String addName = keyboard.nextLine();
+                        System.out.println("Email");
+                        String addEmail = keyboard.nextLine();
+                        System.out.println("Phone");
+                        String addPhone = keyboard.nextLine();
+                        System.out.println("Latitude");
+                        double addLatitude = keyboard.nextDouble();
+                        System.out.println("Longitude");
+                        double addLongitude = keyboard.nextDouble();
+                        keyboard.nextLine();
+                        passengerStore.addPassenger(addName, addEmail, addPhone, addLatitude, addLongitude);
+                        System.out.println("Passenger added");
+                        System.out.println(passengerStore.findPassengerByName(addName));
+                        break;
+                    case EXIT:
+                        System.out.println("Exit Menu option chosen");
+                        break;
+                    default:
+                        System.out.print("Invalid option - please enter number in range");
+                        break;
+                }
+
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.print("Invalid option - please enter number in range");
+            }
+        } while (option != EXIT);
+
     }
 }
 

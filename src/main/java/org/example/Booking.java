@@ -21,7 +21,7 @@ class Booking
         this.bookingId = idGenerator.getNextId();
         this.passengerId = passengerId;
         this.vehicleId = vehicleId;
-        this.bookingDateTime = LocalDateTime.of(year, month,day, hour, minute);
+        this.bookingDateTime = LocalDateTime.of(year, month,day, hour, minute, 0);
         this.startLocation = new LocationGPS(startLatitude, startLongitude);
         this.endLocation = new LocationGPS(endLatitude, endLongitude);
         this.cost = cost;
@@ -31,7 +31,7 @@ class Booking
         this.bookingId = bookingId;
         this.passengerId = passengerId;
         this.vehicleId = vehicleId;
-        this.bookingDateTime = LocalDateTime.of(year, month,day, hour, minute);
+        this.bookingDateTime = LocalDateTime.of(year, month,day, hour, minute, 0);
         this.startLocation = new LocationGPS(startLatitude, startLongitude);
         this.endLocation = new LocationGPS(endLatitude, endLongitude);
         this.cost = cost;
