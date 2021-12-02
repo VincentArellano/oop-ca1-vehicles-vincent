@@ -23,25 +23,12 @@ public class MenuTemp {
         // create VehicleManager, and load all vehicles from text file
         vehicleManager = new VehicleManager("vehicles.txt");
 
+        bookingManager = new BookingManager("bookings.txt");
         try {
             displayMainMenu();        // User Interface - Menu
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        vehicleManager.displayAllVehicles();
-
-
-        String registration = "172LH234106";
-        Vehicle vehicle = vehicleManager.findVehicleByRegNum(registration);
-        if (vehicle == null)
-            System.out.println("No vehicle with registration " + registration + " was found.");
-        else
-            System.out.println("Found Vehicle: " + vehicle.toString());
-
-        // Create BookingManager and load all bookings from file
-        // bookingManager = new BookingManager("bookings.txt");
 
         //pMgr.saveToFile();
 
@@ -201,7 +188,7 @@ public class MenuTemp {
                         if (v == null)
                             System.out.println("No vehicle matching the name \"" + registration + "\"");
                         else
-                            System.out.println("Found passenger: \n" + v);
+                            System.out.println("Found vehicle: \n" + v);
                         break;
                     case FIND_BY_TYPE:
                         System.out.println("Find Vehicle by Type");
@@ -260,32 +247,22 @@ public class MenuTemp {
                     case SHOW_FUTURE_BOOKING:
                         System.out.println("Display ALL Future Booking");
                         bookingManager.displayBookingInFuture();
+                        break;
                     case FIND_BY_PASSENGER:
-                        System.out.println("Find Passenger by Name");
-                        System.out.println("Enter passenger name: ");
-                        String name = keyboard.nextLine();
-                        Passenger p = passengerStore.findPassengerByName(name);
-                        if (p == null)
-                            System.out.println("No passenger matching the name \"" + name + "\"");
+                        System.out.println("Find Bookings by Passenger");
+                        System.out.println("Enter passenger ID: ");
+                        int passengerId = keyboard.nextInt();
+                        Booking b = bookingManager.findBookingByPassengerId(passengerId);
+                        if (b == null)
+                            System.out.println("No passenger matching the name \"" + passengerId + "\"");
                         else
-                            System.out.println("Found passenger: \n" + p);
+                            System.out.println("Found Booking: \n" + b);
                         break;
                     case ADD_BOOKING:
-                        System.out.println("Add Passengers");
-                        System.out.println("Name:");
-                        String addName = keyboard.nextLine();
-                        System.out.println("Email");
-                        String addEmail = keyboard.nextLine();
-                        System.out.println("Phone");
-                        String addPhone = keyboard.nextLine();
-                        System.out.println("Latitude");
-                        double addLatitude = keyboard.nextDouble();
-                        System.out.println("Longitude");
-                        double addLongitude = keyboard.nextDouble();
-                        keyboard.nextLine();
-                        passengerStore.addPassenger(addName, addEmail, addPhone, addLatitude, addLongitude);
-                        System.out.println("Passenger added");
-                        System.out.println(passengerStore.findPassengerByName(addName));
+                        System.out.println("Add Booking");
+
+                        //bookingManager.addBooking();
+                        System.out.println("Booking added");
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");

@@ -92,15 +92,6 @@ class Booking
     public void setCost(double cost) {
         this.cost = cost;
     }
-
-    public IdGenerator getIdGenerator() {
-        return idGenerator;
-    }
-
-    public void setIdGenerator(IdGenerator idGenerator) {
-        this.idGenerator = idGenerator;
-    }
-
     @Override
     public String toString() {
         return "Booking{" +
@@ -111,7 +102,6 @@ class Booking
                 ", startLocation=" + startLocation +
                 ", endLocation=" + endLocation +
                 ", cost=" + cost +
-                ", idGenerator=" + idGenerator +
                 '}';
     }
 }
