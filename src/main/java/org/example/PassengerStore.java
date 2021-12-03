@@ -108,4 +108,13 @@ public class PassengerStore {
         }
         return null;
     }
+
+    public Passenger findPassengerById(int passengerId){
+        for(Passenger p :passengerList){
+            if(p.getId()==passengerId){
+                return p;
+            }
+        }
+        return null;
+    }
 }

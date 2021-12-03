@@ -84,4 +84,13 @@ public class VehicleManager {
         }
         return newVehicleList;
     }
+
+    public Vehicle findVehicleById(int vehicleId){
+        for(Vehicle v :vehicleList){
+            if(v.getId()==vehicleId){
+                return v;
+            }
+        }
+        return null;
+    }
 }

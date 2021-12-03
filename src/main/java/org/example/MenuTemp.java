@@ -221,16 +221,18 @@ public class MenuTemp {
         final String MENU_ITEMS = "\n*** Booking MENU ***\n"
                 + "1. Show all Booking\n"
                 + "2. Show all future Booking\n"
-                + "3. Find Booking by Passenger\n"
+                + "3. Show Booking details\n"
                 + "4. Add Booking\n"
-                + "5. Exit\n"
-                + "Enter Option [1,2,3,4,5]";
+                + "5. Find Bookings for a Passenger\n"
+                + "6. Exit\n"
+                + "Enter Option [1,2,3,4,5,6]";
 
         final int SHOW_ALL = 1;
         final int SHOW_FUTURE_BOOKING = 2;
-        final int FIND_BY_PASSENGER = 3;
+        final int SHOW_BOOKING_DETAILS = 3;
         final int ADD_BOOKING = 4;
-        final int EXIT = 5;
+        final int FIND_PASSENGER_BOOKINGS = 5;
+        final int EXIT = 6;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -248,21 +250,62 @@ public class MenuTemp {
                         System.out.println("Display ALL Future Booking");
                         bookingManager.displayBookingInFuture();
                         break;
-                    case FIND_BY_PASSENGER:
-                        System.out.println("Find Bookings by Passenger");
-                        System.out.println("Enter passenger ID: ");
-                        int passengerId = keyboard.nextInt();
-                        Booking b = bookingManager.findBookingByPassengerId(passengerId);
+                    case SHOW_BOOKING_DETAILS:
+                        System.out.println("Find Bookings Details");
+                        System.out.println("Enter Booking ID: ");
+                        int bookingId = keyboard.nextInt();
+                        keyboard.nextLine();
+                        Booking b = bookingManager.showBookingDetails(bookingId);
                         if (b == null)
-                            System.out.println("No passenger matching the name \"" + passengerId + "\"");
+                            System.out.println("No booking matching the name \"" + bookingId + "\"");
                         else
                             System.out.println("Found Booking: \n" + b);
                         break;
                     case ADD_BOOKING:
-                        System.out.println("Add Booking");
+                        System.out.println("Available Vehicles:");
+                        vehicleManager.displayAllVehicles();
+                        System.out.println("\nCurrent Passengers");
+                        passengerStore.displayAllPassengers();
 
-                        //bookingManager.addBooking();
+                        System.out.println("\nAdd Passenger ID");
+                        int addPassengerId = keyboard.nextInt();
+                        System.out.println("Add Vehicle ID");
+                        int addVehicleId = keyboard.nextInt();
+                        System.out.println("Add Year");
+                        int addYear = keyboard.nextInt();
+                        System.out.println("Add Month");
+                        int addMonth = keyboard.nextInt();
+                        System.out.println("Add Day");
+                        int addDay = keyboard.nextInt();
+                        System.out.println("Add Hour");
+                        int addHour = keyboard.nextInt();
+                        System.out.println("Add Minute");
+                        int addMinute = keyboard.nextInt();
+                        System.out.println("Add Start Latitude");
+                        double addStartLatitude = keyboard.nextDouble();
+                        System.out.println("Add Start Longitude");
+                        double addStartLongitude = keyboard.nextDouble();
+                        System.out.println("Add End Latitude");
+                        double addEndLatitude = keyboard.nextDouble();
+                        System.out.println("Add End Longitude");
+                        double addEndLongitude = keyboard.nextDouble();
+                        System.out.println("Add Cost");
+                        double addCost = keyboard.nextDouble();
+                        keyboard.nextLine();
+
+                        bookingManager.addBooking(addPassengerId,addVehicleId,addYear,addMonth,addDay,addHour,addMinute,addStartLatitude,addStartLongitude,addEndLatitude,addEndLongitude,addCost);
                         System.out.println("Booking added");
+                        break;
+                    case FIND_PASSENGER_BOOKINGS:
+                        System.out.println("Find Passenger Bookings");
+                        System.out.println("Enter Passenger ID: ");
+                        int passengerId = keyboard.nextInt();
+                        keyboard.nextLine();
+                        Booking b1 = bookingManager.findPassengerBookings(passengerId);
+                        if (b1 == null)
+                            System.out.println("No booking matching the name \"" + passengerId + "\"");
+                        else
+                            System.out.println("Found Passenger Bookings: \n" + b1);
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");

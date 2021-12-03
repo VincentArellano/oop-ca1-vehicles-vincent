@@ -94,7 +94,16 @@ public class BookingManager {
         }
     }
 
-    public Booking findBookingByPassengerId(int passengerId){
+    public Booking showBookingDetails(int bookingId){
+        for(Booking b :bookingList){
+            if(b.getBookingId() == bookingId){
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public Booking findPassengerBookings(int passengerId){
         for(Booking b :bookingList){
             if(b.getPassengerId() == passengerId){
                 return b;
@@ -102,4 +111,6 @@ public class BookingManager {
         }
         return null;
     }
+
+
 }
