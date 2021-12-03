@@ -85,6 +85,7 @@ public class PassengerStore {
         if (found == false) {
 
             passengerList.add(passenger);
+            System.out.println("Passenger Added");
 
         } else {
 

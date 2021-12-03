@@ -86,6 +86,7 @@ public class BookingManager {
         if (found == false) {
 
             bookingList.add(booking);
+            System.out.println("Booking Added");
 
         } else {
 

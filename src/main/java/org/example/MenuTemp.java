@@ -137,8 +137,6 @@ public class MenuTemp {
                         double addLongitude = keyboard.nextDouble();
                         keyboard.nextLine();
                         passengerStore.addPassenger(addName, addEmail, addPhone, addLatitude, addLongitude);
-                        System.out.println("Passenger added");
-                        System.out.println(passengerStore.findPassengerByName(addName));
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
@@ -294,7 +292,6 @@ public class MenuTemp {
                         keyboard.nextLine();
 
                         bookingManager.addBooking(addPassengerId,addVehicleId,addYear,addMonth,addDay,addHour,addMinute,addStartLatitude,addStartLongitude,addEndLatitude,addEndLongitude,addCost);
-                        System.out.println("Booking added");
                         break;
                     case FIND_PASSENGER_BOOKINGS:
                         System.out.println("Find Passenger Bookings");

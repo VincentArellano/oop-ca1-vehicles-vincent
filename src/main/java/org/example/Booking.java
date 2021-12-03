@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 class Booking
 {
@@ -104,4 +105,13 @@ class Booking
                 ", cost=" + cost +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return passengerId == booking.passengerId && vehicleId == booking.vehicleId && Objects.equals(bookingDateTime, booking.bookingDateTime);
+    }
+
 }
