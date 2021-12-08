@@ -23,7 +23,8 @@ public class MenuTemp {
         // create VehicleManager, and load all vehicles from text file
         vehicleManager = new VehicleManager("vehicles.txt");
 
-        bookingManager = new BookingManager("bookings.txt");
+        bookingManager = new BookingManager(passengerStore, vehicleManager);
+
         try {
             displayMainMenu();        // User Interface - Menu
         } catch (IOException e) {
@@ -265,9 +266,9 @@ public class MenuTemp {
                         System.out.println("\nCurrent Passengers");
                         passengerStore.displayAllPassengers();
 
-                        System.out.println("\nAdd Passenger ID");
+                        System.out.println("\nSelect Passenger ID");
                         int addPassengerId = keyboard.nextInt();
-                        System.out.println("Add Vehicle ID");
+                        System.out.println("Select Vehicle ID");
                         int addVehicleId = keyboard.nextInt();
                         System.out.println("Add Year");
                         int addYear = keyboard.nextInt();
@@ -287,11 +288,9 @@ public class MenuTemp {
                         double addEndLatitude = keyboard.nextDouble();
                         System.out.println("Add End Longitude");
                         double addEndLongitude = keyboard.nextDouble();
-                        System.out.println("Add Cost");
-                        double addCost = keyboard.nextDouble();
                         keyboard.nextLine();
 
-                        bookingManager.addBooking(addPassengerId,addVehicleId,addYear,addMonth,addDay,addHour,addMinute,addStartLatitude,addStartLongitude,addEndLatitude,addEndLongitude,addCost);
+                        bookingManager.addBooking(addPassengerId,addVehicleId,addYear,addMonth,addDay,addHour,addMinute,addStartLatitude,addStartLongitude,addEndLatitude,addEndLongitude);
                         break;
                     case FIND_PASSENGER_BOOKINGS:
                         System.out.println("Find Passenger Bookings");

@@ -93,4 +93,13 @@ public class VehicleManager {
         }
         return null;
     }
+
+    public boolean checkVehicleIfExist(int vehicleId){
+        for(Vehicle v :vehicleList){
+            if(v.getId()==vehicleId){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -13,9 +13,10 @@ public class BookingManager {
     private VehicleManager vehicleManager;
 
     // Constructor
-    public BookingManager(String fileName) {
+    public BookingManager(PassengerStore passengerStore, VehicleManager vehicleManager) {
+        this.passengerStore = passengerStore;
+        this.vehicleManager = vehicleManager;
         this.bookingList = new ArrayList<>();
-        loadBookingDataFromFile(fileName);
     }
 
     public List<Booking> getAllBookings() {
@@ -36,62 +37,40 @@ public class BookingManager {
         }
     }
 
-    private void loadBookingDataFromFile(String filename) {
+    public void addBooking(int passengerId, int vehicleId, int year, int month, int day, int hour, int minute, double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
 
-        try {
-            Scanner sc = new Scanner(new File(filename));
-            sc.useDelimiter("[,\r\n]+");
+        if(passengerStore.findPassengerById(passengerId) != null) {
+            if (vehicleManager.findVehicleById(vehicleId) != null) {
 
-            while (sc.hasNext()) {
-                int bookingId = sc.nextInt();
-                int passengerId = sc.nextInt();
-                int vehicleId = sc.nextInt();
-                int year = sc.nextInt();
-                int month = sc.nextInt();
-                int day = sc.nextInt();
-                int hour = sc.nextInt();
-                int minute = sc.nextInt();
-                double startLatitude = sc.nextDouble();
-                double startLongitude = sc.nextDouble();
-                double endLatitude = sc.nextDouble();
-                double endLongitude = sc.nextDouble();
-                double cost = sc.nextDouble();
+                double cost = 55.50;
+                Booking booking = new Booking(passengerId, vehicleId, year, month, day, hour, minute, startLatitude, startLongitude, endLatitude, endLongitude, cost);
+                boolean found = false;
 
-                bookingList.add(new Booking(bookingId, passengerId, vehicleId, year, month, day, hour, minute, startLatitude, startLongitude, endLatitude, endLongitude, cost));
-            }
-            sc.close();
+                for (Booking b : bookingList) {
 
-        } catch (IOException e) {
-            System.out.println("Exception thrown. " + e);
-        }
-    }
+                    if (b.equals(booking)) {
 
-    public void addBooking(int passengerId, int vehicleId, int year, int month, int day, int hour, int minute, double startLatitude, double startLongitude, double endLatitude, double endLongitude, double cost) {
-        Booking booking = new Booking(passengerId, vehicleId, year, month, day, hour, minute, startLatitude, startLongitude, endLatitude, endLongitude, cost);
+                        found = true;
 
-        boolean found = false;
+                        break;
 
-        for (Booking b : bookingList) {
+                    }
 
-            if (b.equals(booking)) {
+                }
 
-                found = true;
+                if (found == false) {
 
-                break;
+                    bookingList.add(booking);
+                    System.out.println("Booking Added");
+
+                } else {
+
+                    System.out.println("*** addBooking() - booking already exists - no duplicates allowed");
+
+                }
+
 
             }
-
-        }
-
-        if (found == false) {
-
-            bookingList.add(booking);
-            System.out.println("Booking Added");
-
-        } else {
-
-            System.out.println("*** addBooking() - booking already exists - no duplicates allowed");
-
         }
     }
 

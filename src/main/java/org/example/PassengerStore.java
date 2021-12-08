@@ -118,4 +118,13 @@ public class PassengerStore {
         }
         return null;
     }
+
+    public boolean checkPassengerIfExist(int passengerId){
+        for(Passenger p :passengerList){
+            if(p.getId()==passengerId){
+                return true;
+            }
+        }
+        return false;
+    }
 }
