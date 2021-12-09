@@ -95,9 +95,9 @@ public class BookingManager {
         }
 
         if(bookings.size()>0) {
-            System.out.println("Bookings with passenger name " + passengerId + ":");
+            System.out.println("Bookings with passenger id " + passengerId + ":");
         }else{
-            System.out.println("Cannot find booking with that passenger name");
+            System.out.println("Cannot find booking with that passenger id");
         }
 
         ComparatorBookingDateTime comp = new ComparatorBookingDateTime();
@@ -105,7 +105,25 @@ public class BookingManager {
         return bookings;
     }
 
+    public Booking findBookingById(int bookingId){
+        for(Booking b :bookingList){
+            if(b.getBookingId()==bookingId){
+                return b;
+            }
+        }
+        return null;
+    }
 
+
+    public void deleteBooking(int bookingId) {
+        Booking b = findBookingById(bookingId);
+        if (b != null) {
+                    bookingList.remove(b);
+                    System.out.println("Booking Deleted");
+                } else {
+                    System.out.println("Cannot find booking with that booking id");
+                }
+    }
 
 
 }

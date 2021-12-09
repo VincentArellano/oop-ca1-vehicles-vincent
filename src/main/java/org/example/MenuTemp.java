@@ -309,6 +309,7 @@ public class MenuTemp {
                         System.out.println("Enter Booking ID");
                         int bookingId2 = keyboard.nextInt();
                         keyboard.nextLine();
+                        bookingManager.deleteBooking(bookingId2);
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
