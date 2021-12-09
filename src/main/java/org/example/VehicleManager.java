@@ -3,6 +3,7 @@ package org.example;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class VehicleManager {
@@ -94,12 +95,14 @@ public class VehicleManager {
         return null;
     }
 
-    public boolean checkVehicleIfExist(int vehicleId){
+
+    public double findVehicleCost(int vehicleId){
         for(Vehicle v :vehicleList){
             if(v.getId()==vehicleId){
-                return true;
+                return v.getCostPerMile();
             }
         }
-        return false;
+        return 0.00;
     }
+
 }

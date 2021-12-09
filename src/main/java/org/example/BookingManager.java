@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,7 +43,9 @@ public class BookingManager {
         if(passengerStore.findPassengerById(passengerId) != null) {
             if (vehicleManager.findVehicleById(vehicleId) != null) {
 
-                double cost = 55.50;
+                double distance = Math.sqrt(((endLatitude-startLatitude)*(endLatitude-startLatitude))+((endLongitude-startLongitude)*(endLongitude-startLongitude)));
+                double costPerKm = vehicleManager.findVehicleCost(vehicleId);
+                double cost = Math.round(distance*costPerKm);
                 Booking booking = new Booking(passengerId, vehicleId, year, month, day, hour, minute, startLatitude, startLongitude, endLatitude, endLongitude, cost);
                 boolean found = false;
 
@@ -83,14 +86,26 @@ public class BookingManager {
         return null;
     }
 
-    public Booking findPassengerBookings(int passengerId){
+    public ArrayList<Booking> findPassengerBookings(int passengerId){
+        ArrayList <Booking> bookings = new ArrayList<>();
         for(Booking b :bookingList){
             if(b.getPassengerId() == passengerId){
-                return b;
+                bookings.add(b);
             }
         }
-        return null;
+
+        if(bookings.size()>0) {
+            System.out.println("Bookings with passenger name " + passengerId + ":");
+        }else{
+            System.out.println("Cannot find booking with that passenger name");
+        }
+
+        ComparatorBookingDateTime comp = new ComparatorBookingDateTime();
+        Collections.sort(bookings, comp);
+        return bookings;
     }
+
+
 
 
 }

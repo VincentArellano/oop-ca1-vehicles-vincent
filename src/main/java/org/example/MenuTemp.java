@@ -223,15 +223,17 @@ public class MenuTemp {
                 + "3. Show Booking details\n"
                 + "4. Add Booking\n"
                 + "5. Find Bookings for a Passenger\n"
-                + "6. Exit\n"
-                + "Enter Option [1,2,3,4,5,6]";
+                + "6. Delete Booking\n"
+                + "7. Exit\n"
+                + "Enter Option [1,2,3,4,5,6,7]";
 
         final int SHOW_ALL = 1;
         final int SHOW_FUTURE_BOOKING = 2;
         final int SHOW_BOOKING_DETAILS = 3;
         final int ADD_BOOKING = 4;
         final int FIND_PASSENGER_BOOKINGS = 5;
-        final int EXIT = 6;
+        final int DELETE_BOOKING = 6;
+        final int EXIT = 7;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -294,14 +296,19 @@ public class MenuTemp {
                         break;
                     case FIND_PASSENGER_BOOKINGS:
                         System.out.println("Find Passenger Bookings");
-                        System.out.println("Enter Passenger ID: ");
+                        System.out.println("Enter Passenger ID");
                         int passengerId = keyboard.nextInt();
                         keyboard.nextLine();
-                        Booking b1 = bookingManager.findPassengerBookings(passengerId);
-                        if (b1 == null)
-                            System.out.println("No booking matching the name \"" + passengerId + "\"");
-                        else
-                            System.out.println("Found Passenger Bookings: \n" + b1);
+
+                        for (Booking b1 : bookingManager.findPassengerBookings(passengerId)) {
+                            System.out.println(b1);
+                        }
+                        break;
+                    case DELETE_BOOKING:
+                        System.out.println("Delete Booking");
+                        System.out.println("Enter Booking ID");
+                        int bookingId2 = keyboard.nextInt();
+                        keyboard.nextLine();
                         break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
