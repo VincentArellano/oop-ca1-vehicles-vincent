@@ -224,8 +224,11 @@ public class MenuTemp {
                 + "4. Add Booking\n"
                 + "5. Find Bookings for a Passenger\n"
                 + "6. Delete Booking\n"
-                + "7. Exit\n"
-                + "Enter Option [1,2,3,4,5,6,7]";
+                + "7. Show \n"
+                + "\n"
+                + "\n"
+                + "10. Exit\n"
+                + "Enter Option [1,2,3,4,5,6,7,8,9,10]";
 
         final int SHOW_ALL = 1;
         final int SHOW_FUTURE_BOOKING = 2;
@@ -233,7 +236,10 @@ public class MenuTemp {
         final int ADD_BOOKING = 4;
         final int FIND_PASSENGER_BOOKINGS = 5;
         final int DELETE_BOOKING = 6;
-        final int EXIT = 7;
+        final int SHOW_TYPE = 7;
+        final int SHOW_NO_OF_SEATS = 8;
+        final int SHOW_AVERAGE_JOURNEY = 9;
+        final int EXIT = 10;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -311,6 +317,7 @@ public class MenuTemp {
                         keyboard.nextLine();
                         bookingManager.deleteBooking(bookingId2);
                         break;
+
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
                         break;
