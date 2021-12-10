@@ -1,9 +1,12 @@
 package org.example;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class VehicleManager {
@@ -76,16 +79,6 @@ public class VehicleManager {
         return null;
     }
 
-    public ArrayList<Vehicle> findVehicleByType(String type){
-        ArrayList<Vehicle> newVehicleList = new ArrayList<>();
-        for(Vehicle v :vehicleList){
-            if(v.getType().equalsIgnoreCase(type)){
-                newVehicleList.add(v);
-            }
-        }
-        return newVehicleList;
-    }
-
     public Vehicle findVehicleById(int vehicleId){
         for(Vehicle v :vehicleList){
             if(v.getId()==vehicleId){
@@ -103,6 +96,64 @@ public class VehicleManager {
             }
         }
         return 0.00;
+    }
+
+    public List<Vehicle> filterByType(String type) {
+        List<Vehicle> filteredList = new ArrayList<>();
+
+        for (Vehicle p : this.vehicleList) {
+            if (p.getType().equalsIgnoreCase(type))
+                filteredList.add(p);
+        }
+
+        ComparatorVehicleRegistration comp = new ComparatorVehicleRegistration();
+        Collections.sort(filteredList,comp);
+
+        return filteredList;
+    }
+
+
+    public List<Vehicle> filterByNoOfSeats(double numOfSeats) {
+        List<Vehicle> filteredList = new ArrayList<>();
+
+        for (Vehicle p : this.vehicleList) {
+            if (p.getNumOfSeats() == numOfSeats)
+                filteredList.add(p);
+        }
+
+        ComparatorVehicleRegistration comp = new ComparatorVehicleRegistration();
+        Collections.sort(filteredList,comp);
+
+        return filteredList;
+    }
+
+    public void storeVehicles() throws FileNotFoundException {
+        Scanner console = new Scanner(System.in);
+        System.out.println("Input file: ");
+        String inputFileName = console.next();
+        System.out.print("Output file: ");
+        String outputFileName = console.next();
+
+        File inputFile = new File(inputFileName);
+        Scanner in = new Scanner(inputFile);
+
+        PrintWriter out = new PrintWriter(outputFileName);
+
+
+        double total = 0;
+
+        while (in.hasNextDouble())
+        {
+            double value = in.nextDouble();
+
+            out.printf("%15.2f\n", value);
+            total = total + value;
+        }
+
+        out.printf("Total: %8.2f\n", total);
+
+        in.close();
+        out.close();
     }
 
 }

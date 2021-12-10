@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -140,6 +141,7 @@ public class MenuTemp {
                         passengerStore.addPassenger(addName, addEmail, addPhone, addLatitude, addLongitude);
                         break;
                     case EXIT:
+                        passengerStore.storePassengers();
                         System.out.println("Exit Menu option chosen");
                         break;
                     default:
@@ -147,7 +149,7 @@ public class MenuTemp {
                         break;
                 }
 
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (InputMismatchException | NumberFormatException | FileNotFoundException e) {
                 System.out.print("Invalid option - please enter number in range");
             }
         } while (option != EXIT);
@@ -159,13 +161,15 @@ public class MenuTemp {
                 + "1. Show all Vehicles\n"
                 + "2. Find Vehicle by Registration\n"
                 + "3. Find Vehicle by Type\n"
-                + "4. Exit\n"
-                + "Enter Option [1,2,3,4]";
+                + "4. Find Vehicle by No. of Seats\n"
+                + "5. Exit\n"
+                + "Enter Option [1,2,3,4,5]";
 
         final int SHOW_ALL = 1;
         final int FIND_BY_REG = 2;
         final int FIND_BY_TYPE = 3;
-        final int EXIT = 4;
+        final int FIND_BY_NO_OF_SEATS = 4;
+        final int EXIT = 5;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -193,16 +197,20 @@ public class MenuTemp {
                         System.out.println("Find Vehicle by Type");
                         System.out.println("Enter vehicle type: ");
                         String type = keyboard.nextLine();
-                        vehicleManager.findVehicleByType(type);
-                        if (vehicleManager.findVehicleByType(type) == null)
+                        vehicleManager.filterByType(type);
+                        if (vehicleManager.filterByType(type) == null)
                             System.out.println("No vehicles matching the type \"" + type + "\"");
                         else
                             System.out.println("Found vehicles:");
-                        for(Vehicle v1 : vehicleManager.findVehicleByType(type)) {
+                        for(Vehicle v1 : vehicleManager.filterByType(type)) {
                             System.out.println(v1);
                         }
                         break;
+                    case FIND_BY_NO_OF_SEATS:
+                        System.out.println("Find Vehicle by No. of Seats");
+
                     case EXIT:
+                        vehicleManager.storeVehicles();
                         System.out.println("Exit Menu option chosen");
                         break;
                     default:
@@ -210,7 +218,7 @@ public class MenuTemp {
                         break;
                 }
 
-            } catch (InputMismatchException | NumberFormatException e) {
+            } catch (InputMismatchException | NumberFormatException | FileNotFoundException e) {
                 System.out.print("Invalid option - please enter number in range");
             }
         } while (option != EXIT);
@@ -224,8 +232,9 @@ public class MenuTemp {
                 + "4. Add Booking\n"
                 + "5. Find Bookings for a Passenger\n"
                 + "6. Delete Booking\n"
-                + "7. Exit\n"
-                + "Enter Option [1,2,3,4,5,6,7]";
+                + "7. Show Average Journey\n"
+                + "8. Exit\n"
+                + "Enter Option [1,2,3,4,5,6,7,8]";
 
         final int SHOW_ALL = 1;
         final int SHOW_FUTURE_BOOKING = 2;
@@ -233,7 +242,8 @@ public class MenuTemp {
         final int ADD_BOOKING = 4;
         final int FIND_PASSENGER_BOOKINGS = 5;
         final int DELETE_BOOKING = 6;
-        final int EXIT = 7;
+        final int SHOW_AVERAGE_JOURNEY = 7;
+        final int EXIT = 8;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -311,6 +321,9 @@ public class MenuTemp {
                         keyboard.nextLine();
                         bookingManager.deleteBooking(bookingId2);
                         break;
+                    case SHOW_AVERAGE_JOURNEY:
+                        System.out.println("Average Length of Booking Journey");
+
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
                         break;

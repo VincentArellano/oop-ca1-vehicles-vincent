@@ -121,6 +121,9 @@ public abstract class Vehicle
     {
         this.type = type;
     }
+    public double getNumOfSeats() {
+        return getNumOfSeats();
+    }
 
     @Override
     public String toString()
@@ -131,6 +134,8 @@ public abstract class Vehicle
                 + lastServicedDate + ", mileage=" + mileage + ", depotGPSLocation="
                 + depotGPSLocation + '}';
     }
+
+
 
 
      

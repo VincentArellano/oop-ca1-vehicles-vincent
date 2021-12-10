@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,12 +31,16 @@ public class BookingManager {
         }
     }
 
-    public void displayBookingInFuture() {
+    public ArrayList<Booking> displayBookingInFuture() {
+        ArrayList <Booking> bookings = new ArrayList<>();
         LocalDateTime now = LocalDateTime.now();
         for (Booking b : this.bookingList) {
             if(now.isBefore(b.getBookingDateTime()))
-            System.out.println(b.toString());
+                bookings.add(b);
         }
+        ComparatorBookingDateTime comp = new ComparatorBookingDateTime();
+        Collections.sort(bookings, comp);
+        return bookings;
     }
 
     public void addBooking(int passengerId, int vehicleId, int year, int month, int day, int hour, int minute, double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
@@ -124,6 +129,14 @@ public class BookingManager {
                     System.out.println("Cannot find booking with that booking id");
                 }
     }
+
+//    public double findAverageBookingJourney(){
+//        for(Booking b :bookingList){
+//            double distance = Math.sqrt(((endLatitude-startLatitude)*(endLatitude-startLatitude))+((endLongitude-startLongitude)*(endLongitude-startLongitude)));
+//            double costPerKm = vehicleManager.findVehicleCost(vehicleId);
+//            double cost = Math.round(distance*costPerKm);
+//        }
+//    }
 
 
 }
