@@ -1,5 +1,7 @@
 package org.example;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Car extends Vehicle{
     private double numOfSeats;
 
@@ -43,5 +45,6 @@ public class Car extends Vehicle{
         return "Car{" +
                 "numOfSeats=" + numOfSeats +
                 "} " + super.toString();
+
     }
 }

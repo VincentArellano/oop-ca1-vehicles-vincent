@@ -208,7 +208,16 @@ public class MenuTemp {
                         break;
                     case FIND_BY_NO_OF_SEATS:
                         System.out.println("Find Vehicle by No. of Seats");
-
+                        System.out.println("Enter vehicle No. of Seats: ");
+                        double numOfSeats = keyboard.nextDouble();
+                        vehicleManager.filterByNoOfSeats(numOfSeats);
+                        if (vehicleManager.filterByNoOfSeats(numOfSeats) == null)
+                            System.out.println("No vehicles matching the type \"" + numOfSeats + "\"");
+                        else
+                            System.out.println("Found vehicles:");
+                        for(Vehicle v1 : vehicleManager.filterByNoOfSeats(numOfSeats)) {
+                            System.out.println(v1);
+                        }
                     case EXIT:
                         vehicleManager.storeVehicles();
                         System.out.println("Exit Menu option chosen");
