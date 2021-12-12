@@ -14,6 +14,8 @@ public class BookingManager {
     private PassengerStore passengerStore;
     private VehicleManager vehicleManager;
 
+    Email email = new Email();
+
     // Constructor
     public BookingManager(PassengerStore passengerStore, VehicleManager vehicleManager) {
         this.passengerStore = passengerStore;
@@ -70,6 +72,10 @@ public class BookingManager {
 
                     bookingList.add(booking);
                     System.out.println("Booking Added");
+
+                    System.out.println(email.sendReminderBookingMessage(passengerId, vehicleId, year, month, day, hour, minute,
+                            startLatitude, startLongitude,
+                            endLatitude, endLongitude, cost));
 
                 } else {
 

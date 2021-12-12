@@ -121,6 +121,16 @@ public class PassengerStore {
         return null;
     }
 
+    public void deletePassenger(int passengerId) {
+        Passenger p = findPassengerById(passengerId);
+        if (p != null) {
+            passengerList.remove(p);
+            System.out.println("Passenger Deleted");
+        } else {
+            System.out.println("Cannot find passenger with that passenger id");
+        }
+    }
+
     public void storePassengers() throws FileNotFoundException {
         Scanner console = new Scanner(System.in);
         System.out.println("Input file: ");
